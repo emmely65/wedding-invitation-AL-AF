@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Cormorant+Infant:ital,wght@0,400;0,600;0,700;1,400&family=Elsie&family=Pinyon+Script&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Great+Vibes&family=Cormorant+Infant:ital,wght@0,400;0,600;0,700;1,400&family=Elsie&family=Pinyon+Script&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -58,11 +58,43 @@ img {
 }
 
 /* ─── Staggered zoom-in animations for hero text ─── */
-.stagger-1 { animation-delay: 1200ms; }
-.stagger-2 { animation-delay: 1400ms; }
-.stagger-3 { animation-delay: 1600ms; }
-.stagger-4 { animation-delay: 1800ms; }
-.stagger-5 { animation-delay: 2000ms; }
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 250ms; }
+.stagger-3 { animation-delay: 400ms; }
+.stagger-4 { animation-delay: 550ms; }
+.stagger-5 { animation-delay: 700ms; }
+.stagger-6 { animation-delay: 850ms; }
+
+/* ─── Leaf Parting Transition (Buka Daun Kiri & Kanan 0.5s) ─── */
+@keyframes leafPartLeft {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-105%) rotate(-5deg);
+    opacity: 0;
+  }
+}
+
+@keyframes leafPartRight {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(105%) rotate(5deg);
+    opacity: 0;
+  }
+}
+
+.animate-leafPartLeft {
+  animation: leafPartLeft 500ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.animate-leafPartRight {
+  animation: leafPartRight 500ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
 
 /* ─── Scroll indicator bounce ─── */
 @keyframes scrollBounce {
@@ -83,15 +115,15 @@ img {
 
 @layer components {
   .btn-primary {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-gold transition duration-300 hover:-translate-y-0.5 hover:bg-goldDark focus:outline-none focus:ring-4 focus:ring-gold/30;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-maroon px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-xl transition-all duration-300 hover:scale-95 active:scale-90 hover:bg-maroon/90 focus:outline-none focus:ring-4 focus:ring-maroon/30;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gold/60 bg-white/65 px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-goldDark shadow-card transition duration-300 hover:-translate-y-0.5 hover:bg-gold/10 focus:outline-none focus:ring-4 focus:ring-gold/25;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-maroon/60 bg-white/65 px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-maroon shadow-card transition-all duration-300 hover:scale-95 active:scale-90 hover:bg-maroon/10 focus:outline-none focus:ring-4 focus:ring-maroon/25;
   }
 
   .btn-gold-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/50 bg-gold/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-gold transition duration-300 hover:bg-gold/20;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-maroon/50 bg-maroon/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-maroon transition duration-300 hover:bg-maroon/20;
   }
 
   .form-label {
