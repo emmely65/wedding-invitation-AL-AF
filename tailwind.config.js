@@ -19,8 +19,12 @@ export default {
       },
       fontFamily: {
         script: ['Tangerine', 'Great Vibes', 'cursive'],
+        greatVibes: ['"Great Vibes"', 'cursive'],
+        alexBrush: ['"Alex Brush"', 'cursive'],
+        allura: ['"Allura"', 'cursive'],
         pinyon: ['Pinyon Script', 'cursive'],
         calligraphy: ['Great Vibes', 'cursive'],
+        aston: ['aston-script', '"Great Vibes"', '"Alex Brush"', '"Pinyon Script"', 'cursive'],
         serifDisplay: ['Cormorant Infant', 'Playfair Display', 'serif'],
         elsie: ['Elsie', 'serif'],
         sansBody: ['Poppins', 'system-ui', 'sans-serif'],

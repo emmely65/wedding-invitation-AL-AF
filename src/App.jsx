@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { weddingData } from './data/weddingData.js';
 import OpeningCover from './components/OpeningCover.jsx';
 import HeroSection from './components/HeroSection.jsx';
-import BismillahSection from './components/BismillahSection.jsx';
+import QuoteSection from './components/QuoteSection.jsx';
+import SaveTheDateSection from './components/SaveTheDateSection.jsx';
 import CoupleProfile from './components/CoupleProfile.jsx';
 import EventDetails from './components/EventDetails.jsx';
 import AdabWalimah from './components/AdabWalimah.jsx';
@@ -11,6 +12,34 @@ import RSVPForm from './components/RSVPForm.jsx';
 import ClosingSection from './components/ClosingSection.jsx';
 import MusicControl from './components/MusicControl.jsx';
 import BottomNavigation from './components/BottomNavigation.jsx';
+
+function MotionBackground({ opened }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (opened && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [opened]);
+
+  if (!opened) return null;
+
+  return (
+    <div className="fixed inset-y-0 right-0 w-full lg:w-[35%] z-0 pointer-events-none overflow-hidden">
+      <video
+        ref={videoRef}
+        src="/general-maroon.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-maroon/20 pointer-events-none" />
+    </div>
+  );
+}
 
 function getGuestName() {
   const params = new URLSearchParams(window.location.search);
@@ -45,7 +74,7 @@ export default function App() {
   }
 
   // Lock scroll when cover is shown
-  React.useEffect(() => {
+  useEffect(() => {
     if (!opened) {
       document.documentElement.classList.add('cover-locked');
       document.body.classList.add('cover-locked');
@@ -72,8 +101,11 @@ export default function App() {
       </div>
 
       {/* RIGHT COLUMN - MAIN CONTAINER */}
-      <div className={`w-full lg:w-[35%] h-full relative bg-white shadow-2xl overflow-x-hidden scroll-smooth ${opened ? 'overflow-y-auto' : 'overflow-hidden'}`} id="main-scroll-container">
+      <div className={`w-full lg:w-[35%] h-full relative bg-maroon shadow-2xl overflow-x-hidden scroll-smooth ${opened ? 'overflow-y-auto' : 'overflow-hidden'}`} id="main-scroll-container">
         
+        {/* Background video general-maroon.mp4 untuk semua seksi selain Home */}
+        <MotionBackground opened={opened} />
+
         {!coverDismissed && (
           <OpeningCover
             data={weddingData}
@@ -93,13 +125,16 @@ export default function App() {
           {/* 1. Hero with video */}
           <HeroSection data={weddingData} opened={opened} />
 
-          {/* 2. Bismillah / Opening Islamic */}
-          <BismillahSection data={weddingData} />
+          {/* 2. Quote Section (setelah Home) */}
+          <QuoteSection data={weddingData} />
 
-          {/* 3. Couple Profiles */}
+          {/* 3. Couple Profiles (Mempelai) */}
           <CoupleProfile data={weddingData} />
 
-          {/* 4. Event Details (Akad, Resepsi, Ngunduh Mantu) */}
+          {/* 4. Simpan Tanggal (Countdown) setelah Mempelai */}
+          <SaveTheDateSection data={weddingData} />
+
+          {/* 5. Event Details (Akad, Resepsi, Ngunduh Mantu) */}
           <EventDetails
             events={weddingData.events}
             bouquetSrc={weddingData.photos.bouquet}
@@ -117,22 +152,6 @@ export default function App() {
           {/* 13. Closing */}
           <ClosingSection data={weddingData} />
         </main>
-
-        {/* Footer */}
-        {opened && (
-          <footer className="bg-ink px-5 py-8 pb-24 text-center text-xs text-ivory/70 sm:pb-8">
-            <p>Made with ❤️ for {weddingData.coupleName}</p>
-            <a
-              href="#home"
-              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-4 py-2 text-ivory/80 transition hover:bg-gold/10"
-            >
-              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M5 15l7-7 7 7" />
-              </svg>
-              Kembali ke atas
-            </a>
-          </footer>
-        )}
 
         {/* Music Control */}
         <MusicControl

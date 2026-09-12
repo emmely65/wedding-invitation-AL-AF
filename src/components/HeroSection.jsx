@@ -1,38 +1,8 @@
-import { useEffect, useMemo, useState, useRef } from 'react';
-
-function getCountdown(target) {
-  const distance = new Date(target).getTime() - Date.now();
-  const safe = Math.max(distance, 0);
-  return {
-    days: Math.floor(safe / 86400000),
-    hours: Math.floor((safe / 3600000) % 24),
-    minutes: Math.floor((safe / 60000) % 60),
-    seconds: Math.floor((safe / 1000) % 60),
-  };
-}
-
-function CountdownCard({ value, label }) {
-  return (
-    <div className="rounded-2xl border border-maroon/20 bg-white/70 px-3 py-3 text-center shadow-card backdrop-blur sm:px-5">
-      <div className="font-serifDisplay text-2xl font-bold tabular-nums text-maroon sm:text-3xl">
-        {String(value).padStart(2, '0')}
-      </div>
-      <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-maroon/70">
-        {label}
-      </div>
-    </div>
-  );
-}
+import { useEffect, useState, useRef } from 'react';
 
 export default function HeroSection({ data, opened }) {
   const videoRef = useRef(null);
-  const [time, setTime] = useState(() => getCountdown(data.countdownTarget));
   const [showContent, setShowContent] = useState(false);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => setTime(getCountdown(data.countdownTarget)), 1000);
-    return () => window.clearInterval(timer);
-  }, [data.countdownTarget]);
 
   // Sinkronisasi pemutaran video hero agar diputar 1 kali lalu diam di frame terakhir
   useEffect(() => {
@@ -62,13 +32,10 @@ export default function HeroSection({ data, opened }) {
       }
     };
 
-    // Fungsi pemutaran presisi dari awal (hanya 1 kali putar)
     const startPlaybackFromBeginning = () => {
-      video.loop = false;
       try {
         video.currentTime = 0;
       } catch (_) {}
-
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
@@ -96,18 +63,6 @@ export default function HeroSection({ data, opened }) {
       video.removeEventListener('loadedmetadata', startPlaybackFromBeginning);
     };
   }, [opened]);
-
-  const calendarUrl = useMemo(() => {
-    const event = data.events[0];
-    const params = new URLSearchParams({
-      action: 'TEMPLATE',
-      text: `The Wedding of ${data.coupleName}`,
-      dates: `${event.calendar.start}/${event.calendar.end}`,
-      details: event.calendar.details,
-      location: event.calendar.location,
-    });
-    return `https://www.google.com/calendar/render?${params.toString()}`;
-  }, [data]);
 
   return (
     <section id="home" className="relative w-full bg-softPink">
@@ -189,9 +144,13 @@ export default function HeroSection({ data, opened }) {
             }`}
           >
             <a
-              href="#bismillah"
+              href="#quote"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="scroll-indicator flex h-10 w-6 sm:h-11 sm:w-7 items-center justify-center rounded-full border-[1.8px] border-stone-700/80 text-stone-700 transition hover:border-maroon hover:text-maroon"
-              aria-label="Scroll ke konten selanjutnya"
+              aria-label="Scroll ke seksi Quote"
             >
               <svg
                 className="h-4 w-4"
@@ -202,31 +161,6 @@ export default function HeroSection({ data, opened }) {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m0 0l-4-4m4 4l4-4" />
               </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Countdown below hero */}
-      <div className="relative z-10 bg-gradient-to-b from-softPink to-white px-5 pb-14 pt-10">
-        <div className="mx-auto max-w-md">
-          <div className="grid grid-cols-4 gap-2.5 sm:gap-4" aria-label="Countdown menuju acara">
-            <CountdownCard value={time.days} label="Hari" />
-            <CountdownCard value={time.hours} label="Jam" />
-            <CountdownCard value={time.minutes} label="Menit" />
-            <CountdownCard value={time.seconds} label="Detik" />
-          </div>
-          <div className="mt-8 text-center">
-            <a
-              href={calendarUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-primary"
-            >
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M5 3v2M19 3v2M3 7h18M5 21h14a2 2 0 002-2V7H3v12a2 2 0 002 2z" />
-              </svg>
-              Simpan Tanggal
             </a>
           </div>
         </div>

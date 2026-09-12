@@ -9,7 +9,7 @@ export const weddingData = {
   coverDate: '19 . 10 . 2026',
   countdownTarget: '2026-10-19T09:00:00+07:00',
   hashtag: '#AffandiAlfiya',
-  musicUrl: '/audio/weddingv2.mp3',
+  musicUrl: '/audio/tiara-andini-pernikahan-kita.mp3',
 
   // Video background di hero section
   heroVideoUrl: '/vid-general-motion-v1-new.mp4',
@@ -31,6 +31,12 @@ export const weddingData = {
     quoteSource: 'QS. Ar-Rum: 21',
     invitation:
       'Dengan memohon ridho & rahmat Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.',
+  },
+
+  loveQuote: {
+    initials: { left: 'A', right: 'A' },
+    caption:
+      'Menurut kita cinta hanya sebuah kebohongan bagi mereka yang tidak bisa membuktikan dihubungan yang serius dan Tidak ada yang lebih indah dari 2 raga yang saling menjaga, tidak bertemu, namun saling menunggu tidak berpapasan, namun saling memantaskan',
   },
 
   couple: {
@@ -139,7 +145,17 @@ export const weddingData = {
       receiver: 'Anita Safitri',
       address: 'Jalan Raya Bojongsari No.5,\nGunung Putri, Citeureup, Bogor,\nJawa Barat',
     },
-    whatsappNumber: '628000000000',
+    whatsappNumber: '6282332779432',
+  },
+
+  contact: {
+    whatsapp: '082332779432',
+    instagram: 'https://www.instagram.com/goes_mus_1991?stkn=OHE0N2JxcTgwdXg3',
+  },
+
+  closing: {
+    text: 'Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.',
+    salam: "Wassalamu'alaikum warahmatullahi wabarakatuh",
   },
 
   doa: {

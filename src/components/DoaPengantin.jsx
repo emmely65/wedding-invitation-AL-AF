@@ -2,30 +2,47 @@ import Reveal from './Reveal.jsx';
 
 export default function DoaPengantin({ doa }) {
   return (
-    <section className="section-padding bg-gradient-section">
-      <div className="mx-auto max-w-lg text-center">
+    <section
+      id="doa"
+      style={{ backgroundColor: 'rgba(92, 15, 26, 0.9)' }}
+      className="relative z-10 w-full px-4 sm:px-6 py-12 sm:py-16 flex flex-col items-center overflow-hidden border-b border-white/15"
+    >
+      <div className="w-full max-w-md flex flex-col items-center">
         <Reveal>
-          <h2 className="font-elsie text-2xl text-ink sm:text-3xl">Doa Untuk Pengantin</h2>
-          <div className="mx-auto mt-3 h-px w-12 bg-gradient-to-r from-transparent via-gold to-transparent" />
-        </Reveal>
+          {/* Box Merah Maron Menyala, Tengah Putih Cream Transparan Tanpa Blur */}
+          <div
+            style={{ backgroundColor: 'rgba(255, 248, 243, 0.85)' }}
+            className="relative w-full max-w-[340px] sm:max-w-[370px] rounded-[24px] sm:rounded-[28px] border-2 sm:border-[2.5px] border-[#8B0014] shadow-[0_0_24px_rgba(163,14,34,0.4),0_12px_35px_rgba(0,0,0,0.35)] px-5 py-6 sm:px-6 sm:py-7 text-center mx-auto transition duration-300 flex flex-col items-center"
+          >
+            {/* Judul Cursive Doa Untuk Pengantin */}
+            <h3 className="font-greatVibes text-[34px] sm:text-[40px] text-[#241C1A] leading-tight select-none font-normal">
+              Doa Untuk Pengantin
+            </h3>
 
-        <Reveal delay={200}>
-          <p className="arabic-text mt-8 text-2xl leading-[2.2] text-ink sm:text-3xl">
-            {doa.arabic}
-          </p>
-        </Reveal>
+            {/* Garis Pemisah Halus */}
+            <div className="my-2.5 sm:my-3 w-4/5 max-w-[180px] h-[1px] bg-[#8C7A75]/35 mx-auto" />
 
-        <Reveal delay={300}>
-          <p className="mt-6 font-serifDisplay text-base italic text-goldDark">
-            {doa.transliteration}
-          </p>
-        </Reveal>
+            {/* Teks Doa Arab */}
+            <p
+              dir="rtl"
+              className="arabic-text font-serif text-xl sm:text-2xl text-[#241C1A] leading-[2] sm:leading-[2.2] my-2 font-normal"
+            >
+              {doa.arabic}
+            </p>
 
-        <Reveal delay={400}>
-          <div className="mx-auto my-5 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
-          <p className="text-sm leading-relaxed text-ink/70">
-            {doa.translation}
-          </p>
+            {/* Transliterasi Latin */}
+            <p className="font-serifDisplay italic text-xs sm:text-[13.5px] text-[#5C0F1A] font-semibold leading-relaxed mt-1">
+              {doa.transliteration}
+            </p>
+
+            {/* Garis Pembatas Singkat */}
+            <div className="my-2.5 w-1/3 max-w-[80px] h-[1px] bg-[#8C7A75]/30 mx-auto" />
+
+            {/* Arti / Terjemahan Doa */}
+            <p className="font-sansBody text-[11px] sm:text-xs text-[#554641] leading-relaxed max-w-[300px] mx-auto">
+              {doa.translation}
+            </p>
+          </div>
         </Reveal>
       </div>
     </section>
