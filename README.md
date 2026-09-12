@@ -1,110 +1,31 @@
-# Ali & Deni Lailatul Invitation
+# wedding-invitation-AL-AF
 
-Website undangan pernikahan digital single-page scrolling berbasis React + Tailwind CSS.
+Website Undangan Pernikahan Digital (Affandi & Alfiya) berbasis React, Vite, dan Tailwind CSS dengan integrasi Google Sheets API untuk RSVP.
 
-## Fitur
+## Fitur Utama
 
-- Mobile-first responsive layout
-- Opening cover dengan tombol **Buka Undangan**
-- Musik aktif setelah user membuka undangan
-- Countdown acara
-- Quote islami
-- Profil mempelai
-- Detail akad dan resepsi
-- Love story timeline
-- Gallery dengan lightbox
-- RSVP tersimpan di localStorage
-- Guestbook tersimpan di localStorage
-- Love gift dengan tombol salin rekening/alamat
-- Sticky bottom navigation untuk mobile
+- **Opening Cover**: Transisi pembuka modern dengan video latar dan personalisasi nama tamu (`?to=Nama+Tamu`).
+- **Music Player**: Pemutar audio otomatis saat undangan dibuka dengan kontrol putar/jeda melayang.
+- **Quote Islami**: Kutipan QS. Ar-Rum: 21 dengan animasi transisi halus.
+- **Profil Mempelai**: Menampilkan profil lengkap kedua mempelai.
+- **Countdown & Save The Date**: Hitung mundur interaktif menuju hari pernikahan.
+- **Detail Acara**: Jadwal Akad Nikah & Resepsi dengan integrasi tautan Google Maps.
+- **Adab Walimah & Doa Pengantin**: Panduan adab menghadiri walimah serta doa keberkahan pengantin.
+- **RSVP & Ucapan Real-Time**: Terintegrasi langsung dengan Google Sheets (data tersimpan otomatis dan dapat dipantau langsung dari HP).
+- **Closing & Hubungi Kami**: Ucapan terima kasih serta tautan langsung ke WhatsApp & Instagram.
+- **Bottom Navigation**: Navigasi cepat khusus perangkat mobile dengan safe-area padding.
 
-## Cara Menjalankan
+## Menjalankan di Lokal
 
 ```bash
 npm install
 npm run dev
 ```
 
-Buka:
+Buka di browser: `http://localhost:5173/`
 
-```bash
-http://localhost:5173
-```
-
-## Build Production
+## Build Produksi
 
 ```bash
 npm run build
-npm run preview
 ```
-
-## Edit Data Undangan
-
-Semua data utama dapat diedit di:
-
-```bash
-src/data/weddingData.js
-```
-
-Yang bisa diedit:
-
-- Nama pasangan
-- Tanggal acara
-- Countdown target
-- Foto cover, hero, profil, gallery
-- Detail akad dan resepsi
-- Link Google Maps
-- Love story
-- Rekening / love gift
-- Alamat kado
-- Musik
-
-## Nama Tamu dari Link
-
-Website mendukung nama tamu dari query URL:
-
-```bash
-http://localhost:5173/?to=Bapak%20Ahmad
-```
-
-Alternatif parameter:
-
-```bash
-?tamu=Nama%20Tamu
-?nama=Nama%20Tamu
-```
-
-## Ganti Foto
-
-Letakkan foto di folder:
-
-```bash
-public/images/
-```
-
-Lalu ubah path di `src/data/weddingData.js`, contoh:
-
-```js
-photos: {
-  cover: '/images/foto-cover.jpg',
-  hero: '/images/foto-pasangan.jpg',
-  bride: '/images/bella.jpg',
-  groom: '/images/deni.jpg'
-}
-```
-
-## Ganti Musik
-
-Letakkan audio di folder:
-
-```bash
-public/audio/
-```
-
-Lalu ubah:
-
-```js
-musicUrl: '/audio/nama-musik.mp3'
-```
-
-Musik tidak autoplay sebelum user klik tombol **Buka Undangan**.
